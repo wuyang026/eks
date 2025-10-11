@@ -73,16 +73,13 @@ resource "kubectl_manifest" "karpenter_node_class" {
 
 # Node pool作成
 resource "kubectl_manifest" "karpenter_node_pool" {
-  for_each = toset(var.instance_architecture)
   yaml_body = templatefile("${path.module}/node_file/node-pool.yaml", {
     node_class_name       = local.node_class_name
-    node_pool_name        = "${local.node_pool_name}-${each.value}"
+    node_pool_name        = "${local.node_pool_name}"
     instance_cpu          = "${join("\", \"", var.instance_cpu)}"
     instance_category     = "${join("\", \"", var.instance_category)}"
     capacity_type         = "${join("\", \"", var.capacity_type)}"
-    instance_size         = "${join("\", \"", var.instance_size)}"
-    instance_architecture = each.value
-    taints_key            = "${local.node_pool_name}-${each.value}"
+    instance_architecture = "${join("\", \"", var.instance_architecture)}"
   })
   depends_on = [kubectl_manifest.karpenter_node_class, module.eks]
 }

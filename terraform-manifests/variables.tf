@@ -82,11 +82,6 @@ variable "existing_vpc_id" {
   type        = string
 }
 
-variable "instance_size" {
-  description = "Instance size type  used to node pools"
-  type        = list(string)
-}
-
 variable "ecr_repo_name" {
   description = "ECR repo name"
   type        = string
