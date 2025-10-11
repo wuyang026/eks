@@ -24,7 +24,6 @@ module "eks" {
   # cluster security group指定
   create_security_group = false
   additional_security_group_ids = var.existing_security_cluster_group_ids
-  #security_group_id = var.existing_security_cluster_group_id
 
   create_node_security_group = false
 
