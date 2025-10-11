@@ -10,7 +10,6 @@ This repo provides the Terraform configuration to deploy a demo app running on a
 ```
 - Go to `eks/terraform-minifrsts` directory and initialize terraform
 ```cython
-  cd /eks/terraform-minifrsts/
   terraform init -upgrade
 ```
 
@@ -40,7 +39,6 @@ This repo provides the Terraform configuration to deploy a demo app running on a
 Then delete the EKS related resources:
 
 ```
-cd /eks/terraform-minifrsts/
 terraform destroy -var-file="./variables.tfvars"
 ```
 
