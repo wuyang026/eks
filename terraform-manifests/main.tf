@@ -88,12 +88,24 @@ resource "kubectl_manifest" "karpenter_node_pool" {
 }
 
 # ECR repository作成
-resource "aws_ecr_repository" "ecr-repo" {
+resource "aws_ecr_repository" "ecr_repo" {
   name = var.ecr_repo_name
   image_scanning_configuration {
     scan_on_push = true
   }
   depends_on = [kubectl_manifest.karpenter_node_pool]
+}
+
+# EKSアドオンのインストール時に異常が発生しないように、自動で削除されるPodを作成し、ノードを起動
+resource "kubectl_manifest" "sample_pod" {
+  yaml_body = file("${path.module}/sample_pod/sample_pod.yaml")
+  depends_on = [kubectl_manifest.karpenter_node_pool]
+}
+
+# ノードの起動が完了するまで待機
+resource "time_sleep" "wait_180_seconds" {
+  depends_on = [kubectl_manifest.sample_pod]
+  create_duration = "180s"
 }
 
 # EFS CSIドライバーインストール
@@ -104,7 +116,7 @@ module "aws_efs_csi_pod_identity" {
   additional_policy_arns = {
     AmazonEFSCSIDriverPolicy = "arn:aws:iam::aws:policy/service-role/AmazonEFSCSIDriverPolicy"
   }
-  depends_on = [kubectl_manifest.karpenter_node_pool]
+  depends_on = [time_sleep.wait_180_seconds]
 }
 
 resource "aws_eks_pod_identity_association" "efs_csi" {
