@@ -124,38 +124,3 @@ resource "aws_eks_addon" "efs_csi" {
   }
   depends_on = [aws_eks_pod_identity_association.efs_csi]
 }
-
-#module "aws_s3_csi_pod_identity" {
-#  source  = "terraform-aws-modules/eks-pod-identity/aws"
-#  version = "2.0.0"
-#  name             = "${module.eks.cluster_name}_S3_CSI_Dr_Role"
-#  additional_policy_arns = {
-#    AmazonEFSCSIDriverPolicy = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
-#  }
-
-#  mountpoint_s3_csi_bucket_arns      = ["arn:aws:s3:::mountpoint-s3"]
-#  mountpoint_s3_csi_bucket_path_arns = ["arn:aws:s3:::mountpoint-s3/example/*"]
- 
-# associations = {
-#    "s3-csi-controller" = {
-#      cluster_name    = "${module.eks.cluster_name}"
-#      namespace       = "kube-system"
-#      service_account = "s3-csi-controller-sa"
-#      attach_mountpoint_s3_csi_policy = true
-#    }
-#  }
-#  depends_on = [kubectl_manifest.karpenter_node_pool]
-#}
-
-#resource "aws_eks_addon" "s3_csi" {
-#  cluster_name             = module.eks.cluster_name
-#  addon_name               = "aws-mountpoint-s3-csi-driver"
-#  addon_version            = "v2.0.0-eksbuild.1" # Check latest supported
-#  service_account_role_arn = module.aws_s3_csi_pod_identity.iam_role_arn
-#  resolve_conflicts_on_update = "OVERWRITE"
-
-#  tags = {
-#    Name = "s3-csi-addon"
-#  }
-#  depends_on = [module.aws_s3_csi_pod_identity.iam_role_arn]
-#}
