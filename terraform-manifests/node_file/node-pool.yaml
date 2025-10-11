@@ -5,6 +5,7 @@ metadata:
 spec:
   template:
     spec:
+      terminationGracePeriod: 48h
       nodeClassRef:
         group: eks.amazonaws.com
         kind: NodeClass
