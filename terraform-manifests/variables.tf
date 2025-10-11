@@ -1,0 +1,99 @@
+# Input Variables
+# AWS Region
+variable "aws_region" {
+  description = "Region in which AWS Resources to be created"
+  type        = string
+  default     = "us-east-1"
+}
+
+# Environment Variable
+variable "environment" {
+  description = "Environment Variable used as a prefix"
+  type        = string
+  default     = "dev"
+}
+
+# Project Name
+variable "project_name" {
+  description = "Project name"
+  type        = string
+  default     = "ph2"
+}
+
+variable "cluster_k8s_version" {
+  description = "EKS Cluster Version"
+  type        = string
+  default     = "1.34"
+}
+
+variable "cluster_prefix" {
+  description = "cluster prefix"
+  type        = string
+  default     = "eks"
+}
+
+variable "tag_subnet_key" {
+  description = "subnet tag key"
+  type        = string
+}
+
+variable "tag_subnet_value" {
+  description = "subnet tag value"
+  type        = string
+}
+
+variable "existing_security_cluster_group_ids" {
+  description = "cluster security group ids"
+  type        = list(string)
+}
+
+variable "tag_node_sg_key" {
+  description = "node security group tag key"
+  type        = string
+}
+
+variable "tag_node_sg_value" {
+  description = "node security group tag value"
+  type        = string
+}
+
+variable "instance_cpu" {
+  description = "Instance cpus  used to node pools"
+  type        = list(string)
+}
+
+variable "instance_category" {
+  description = "Instance category  used to node pools"
+  type        = list(string)
+}
+
+variable "instance_architecture" {
+  description = "Instance architecture  used to node pools"
+  type        = list(string)
+}
+
+variable "capacity_type" {
+  description = "Instance apacity type  used to node pools"
+  type        = list(string)
+}
+
+variable "existing_vpc_id" {
+  description = "VPC id"
+  type        = string
+}
+
+variable "instance_size" {
+  description = "Instance size type  used to node pools"
+  type        = list(string)
+}
+
+variable "ecr_repo_name" {
+  description = "ECR repo name"
+  type        = string
+}
+
+variable "efs_csi_driver_version" {
+  description = "EFS CSI Driver Version"
+  type        = string
+  default     = "v2.1.12-eksbuild.1"
+}
