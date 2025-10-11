@@ -25,7 +25,11 @@ module "eks" {
   create_security_group = false
   additional_security_group_ids = var.existing_security_cluster_group_ids
 
+  # node security group自動作成不要、node classにカスタムsgを指定
   create_node_security_group = false
+
+  # パブリックアクセス可能指定
+  endpoint_public_access_cidrs = var.endpoint_public_access_cidrs
 
   cloudwatch_log_group_retention_in_days = 30
 

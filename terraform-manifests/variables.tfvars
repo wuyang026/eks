@@ -16,6 +16,12 @@ existing_security_cluster_group_ids = ["sg-0fd540a36ffcce8c7"]
 tag_node_sg_key = "Name"
 tag_node_sg_value = "go-dev-eks-cluster-node"
 
+# public endpoint access cidrs
+endpoint_public_access_cidrs = [
+    "101.123.0.0/24",
+    "101.124.0.0/24",
+]
+
 # ecr Variables
 ecr_repo_name         = "ecr-test"
 

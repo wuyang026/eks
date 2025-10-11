@@ -97,3 +97,9 @@ variable "efs_csi_driver_version" {
   type        = string
   default     = "v2.1.12-eksbuild.1"
 }
+
+variable "endpoint_public_access_cidrs" {
+  description = "endpoint public access cidrs"
+  type        = list(string)
+  default     = ["0.0.0.0/0"]
+}
