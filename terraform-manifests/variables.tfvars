@@ -5,14 +5,14 @@ existing_vpc_id  = "vpc-0031c9c242f118fc0"
 cluster_k8s_version = "1.34"
 environment      = "dev"
 
-# subnet tags
+# subnet tags (subnet作成する時にtagを設定)
 tag_subnet_key = "Usedby"
 tag_subnet_value = "dev-pri"
 
 # cluster security group id
 existing_security_cluster_group_ids = ["sg-0fd540a36ffcce8c7"]
 
-# node security group tags
+# node security group tags (security group作成する時にtagを設定)
 tag_node_sg_key = "Name"
 tag_node_sg_value = "go-dev-eks-cluster-node"
 
