@@ -24,7 +24,8 @@ spec:
           operator: In
           values: ["amd64"]
   limits:
-    cpu: 100
+    cpu: "1000"
+    memory: 1000Gi
   disruption:
     consolidationPolicy: WhenEmptyOrUnderutilized
     consolidateAfter: 30s
