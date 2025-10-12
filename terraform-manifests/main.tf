@@ -100,9 +100,9 @@ resource "kubectl_manifest" "sample_pod" {
 }
 
 # ノードの起動が完了するまで待機
-resource "time_sleep" "wait_100_seconds" {
+resource "time_sleep" "wait_60_seconds" {
   depends_on = [kubectl_manifest.sample_pod]
-  create_duration = "100s"
+  create_duration = "60s"
 }
 
 # EFS CSIドライバーインストール
@@ -113,7 +113,7 @@ module "aws_efs_csi_pod_identity" {
   additional_policy_arns = {
     AmazonEFSCSIDriverPolicy = "arn:aws:iam::aws:policy/service-role/AmazonEFSCSIDriverPolicy"
   }
-  depends_on = [time_sleep.wait_100_seconds]
+  depends_on = [time_sleep.wait_60_seconds]
 }
 
 resource "aws_eks_pod_identity_association" "efs_csi" {
