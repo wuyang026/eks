@@ -68,9 +68,6 @@ resource "kubectl_manifest" "karpenter_node_class" {
     tag_node_sg_key      = var.tag_node_sg_key
     tag_node_sg_value    = var.tag_node_sg_value
   })
-  lifecycle {
-    prevent_destroy = true
-  }
   depends_on = [module.eks,time_sleep.policy_create]
 }
 
@@ -84,9 +81,6 @@ resource "kubectl_manifest" "karpenter_node_pool" {
     capacity_type         = "${join("\", \"", var.capacity_type)}"
     instance_architecture = "${join("\", \"", var.instance_architecture)}"
   })
-  lifecycle {
-    prevent_destroy = true
-  }
   depends_on = [kubectl_manifest.karpenter_node_class, module.eks]
 }
 
@@ -102,9 +96,6 @@ resource "aws_ecr_repository" "ecr_repo" {
 # EKSアドオンのインストール時に異常が発生しないように、自動で削除されるPodを作成し、ノードを起動
 resource "kubectl_manifest" "sample_pod" {
   yaml_body = file("${path.module}/sample_pod/sample_pod.yaml")
-  lifecycle {
-    prevent_destroy = true
-  }
   depends_on = [kubectl_manifest.karpenter_node_pool]
 }
 
