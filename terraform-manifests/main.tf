@@ -52,7 +52,7 @@ resource "aws_eks_access_policy_association" "auto_mode" {
   depends_on = [aws_eks_access_entry.auto_mode]
 }
 
-resource "time_sleep" "wait_10_seconds" {
+resource "time_sleep" "policy_creating" {
   depends_on = [aws_eks_access_policy_association.auto_mode]
   create_duration = "10s"
 }
@@ -68,7 +68,7 @@ resource "kubectl_manifest" "karpenter_node_class" {
     tag_node_sg_key      = var.tag_node_sg_key
     tag_node_sg_value    = var.tag_node_sg_value
   })
-  depends_on = [module.eks.cluster_endpoint,module.eks.node_iam_role_name,time_sleep.wait_10_seconds]
+  depends_on = [module.eks.cluster_endpoint,module.eks.node_iam_role_name,time_sleep.policy_creating]
 }
 
 # Node pool作成
@@ -100,7 +100,7 @@ resource "kubectl_manifest" "sample_pod" {
 }
 
 # ノードの起動が完了するまで待機
-resource "time_sleep" "wait_60_seconds" {
+resource "time_sleep" "node_starting" {
   depends_on = [kubectl_manifest.sample_pod]
   create_duration = "60s"
 }
@@ -113,7 +113,7 @@ module "aws_efs_csi_pod_identity" {
   additional_policy_arns = {
     AmazonEFSCSIDriverPolicy = "arn:aws:iam::aws:policy/service-role/AmazonEFSCSIDriverPolicy"
   }
-  depends_on = [time_sleep.wait_60_seconds]
+  depends_on = [time_sleep.node_starting]
 }
 
 resource "aws_eks_pod_identity_association" "efs_csi" {

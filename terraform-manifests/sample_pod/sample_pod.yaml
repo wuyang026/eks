@@ -4,7 +4,7 @@ metadata:
   name: sample-job
 spec:
   ttlSecondsAfterFinished: 60
-  activeDeadlineSeconds: 300
+  activeDeadlineSeconds: 120
   template:
     spec:
       restartPolicy: Never
