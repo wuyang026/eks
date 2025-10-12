@@ -68,7 +68,7 @@ resource "kubectl_manifest" "karpenter_node_class" {
     tag_node_sg_key      = var.tag_node_sg_key
     tag_node_sg_value    = var.tag_node_sg_value
   })
-  depends_on = [module.eks.cluster_endpoint,module.eks.node_iam_role_name,time_sleep.policy_create]
+  depends_on = [module.eks,time_sleep.policy_create]
 }
 
 # Node pool作成
