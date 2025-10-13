@@ -3,8 +3,8 @@ kind: Job
 metadata:
   name: sample-job
 spec:
-  ttlSecondsAfterFinished: 60
-  activeDeadlineSeconds: 120
+  ttlSecondsAfterFinished: 20
+  activeDeadlineSeconds: 100
   template:
     spec:
       restartPolicy: Never
