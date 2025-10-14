@@ -21,17 +21,12 @@ This repo provides the Terraform configuration to deploy a demo app running on a
   ```cython
    key = value
   ```
-- Private Node security group has the following tags
-  ```cython
-   key = value
-  ```
-
 - Now deploy infra
 ```cython
-  terraform plan -var-file="./variables.tfvars"
+  terraform plan
 ```
 ```cython
-  terraform apply -var-file="./variables.tfvars"
+  terraform apply
 ```
 **Following resources will be created once you apply terraform**
 
@@ -39,6 +34,6 @@ This repo provides the Terraform configuration to deploy a demo app running on a
 Then delete the EKS related resources:
 
 ```
-terraform destroy -var-file="./variables.tfvars"
+terraform destroy
 ```
 
