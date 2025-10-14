@@ -1,6 +1,6 @@
 # EKSアドオンのインストール時に異常が発生しないように、自動で削除されるPodを作成し、ノードを起動
 resource "kubectl_manifest" "sample_pod" {
-  yaml_body = file("${path.module}/sample_pod/sample_pod.yaml")
+  yaml_body = file("${path.module}/node_file/sample_pod.yaml")
   depends_on = [kubectl_manifest.karpenter_node_pool]
 }
 
