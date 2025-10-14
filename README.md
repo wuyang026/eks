@@ -8,7 +8,7 @@ This repo provides the Terraform configuration to deploy a demo app running on a
 ```cython
   git clone https://github.com/xxxx
 ```
-- Go to `eks/terraform-minifrsts` directory and initialize terraform
+- Go to `eks` directory and initialize terraform
 ```cython
   terraform init -upgrade
 ```
