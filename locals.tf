@@ -7,6 +7,8 @@ locals {
   public_subnets-prefix   = "${local.cluster_name}-public-subnet"
   node_class_name         = "${local.prefix_env}-nodeclass"
   node_pool_name          = "${local.prefix_env}-nodepool"
+  cluster_sg_name         = "${local.cluster_name}-terr-sg"
+  node_sg_name            = "${local.cluster_name}-node-terr-sg"
 
   common_tags = {
     owners      = var.project_name

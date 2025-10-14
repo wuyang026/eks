@@ -23,7 +23,7 @@ module "eks" {
 
   # cluster security group指定
   create_security_group = false
-  additional_security_group_ids = var.existing_security_cluster_group_ids
+  additional_security_group_ids = [aws_security_group.eks_cluster_sg.id]
 
   # node security group自動作成不要、node classにカスタムsgを指定
   create_node_security_group = false
@@ -34,6 +34,8 @@ module "eks" {
   cloudwatch_log_group_retention_in_days = 30
 
   tags = local.common_tags
+
+  depends_on = [aws_security_group.eks_cluster_sg,aws_security_group.eks_node_sg]
 }
 
 resource "aws_eks_access_entry" "auto_mode" {
@@ -65,8 +67,7 @@ resource "kubectl_manifest" "karpenter_node_class" {
     node_class_name      = local.node_class_name
     tag_subnet_key       = var.tag_subnet_key
     tag_subnet_value     = var.tag_subnet_value
-    tag_node_sg_key      = var.tag_node_sg_key
-    tag_node_sg_value    = var.tag_node_sg_value
+    tag_node_sg_name_value    = aws_security_group.eks_node_sg.tags["Name"]
   })
   depends_on = [module.eks,time_sleep.policy_create]
 }

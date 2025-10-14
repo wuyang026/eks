@@ -42,21 +42,6 @@ variable "tag_subnet_value" {
   type        = string
 }
 
-variable "existing_security_cluster_group_ids" {
-  description = "cluster security group ids"
-  type        = list(string)
-}
-
-variable "tag_node_sg_key" {
-  description = "node security group tag key"
-  type        = string
-}
-
-variable "tag_node_sg_value" {
-  description = "node security group tag value"
-  type        = string
-}
-
 variable "instance_cpu" {
   description = "Instance cpus  used to node pools"
   type        = list(string)
@@ -97,4 +82,28 @@ variable "endpoint_public_access_cidrs" {
   description = "endpoint public access cidrs"
   type        = list(string)
   default     = ["0.0.0.0/0"]
+}
+
+# cluster security group
+variable "cluster_sg_ingress_rules" {
+  type = list(object({
+    description = string
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    cidr_blocks = list(string)
+  }))
+  default = []
+}
+
+# node security group
+variable "node_sg_ingress_rules" {
+  type = list(object({
+    description = string
+    from_port   = number
+    to_port     = number
+    protocol    = string
+    cidr_blocks = list(string)
+  }))
+  default = []
 }

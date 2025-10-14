@@ -9,12 +9,19 @@ environment      = "dev"
 tag_subnet_key = "usedby"
 tag_subnet_value = "dev"
 
-# cluster security group id
-existing_security_cluster_group_ids = ["sg-08ab9415cb5fa3acb"]
+# cluster security group
+cluster_sg_ingress_rules = [
+  {description = "",from_port = 0,to_port = 0,protocol = "-1",cidr_blocks = ["65.0.72.0/24"]},
+  {description = "",from_port = 0,to_port = 0,protocol = "-1",cidr_blocks = ["192.178.0.0/24"]},
+  {description = "",from_port = 0,to_port = 0,protocol = "-1",cidr_blocks = ["192.178.8.0/24"]},
+  {description = "",from_port = 0,to_port = 0,protocol = "-1",cidr_blocks = ["192.178.9.0/24"]},
+  {description = "",from_port = 0,to_port = 0,protocol = "-1",cidr_blocks = ["192.178.10.0/24"]},
+]
 
 # node security group tags (security group作成する時にtagを設定)
-tag_node_sg_key = "Name"
-tag_node_sg_value = "go-dev-eks-node-sg"
+node_sg_ingress_rules = [
+  {description = "",from_port = 0,to_port = 0,protocol = "-1",cidr_blocks = ["192.178.0.0/24"]}
+]
 
 # public endpoint access cidrs
 endpoint_public_access_cidrs = []

@@ -14,7 +14,7 @@ spec:
   # Required: Security group selection for nodes
   securityGroupSelectorTerms:
      - tags:
-         ${tag_node_sg_key}: "${tag_node_sg_value}"
+         Name: "${tag_node_sg_name_value}"
 
   # Optional: Configure SNAT policy (defaults to Random)
   snatPolicy: Random  # or Disabled

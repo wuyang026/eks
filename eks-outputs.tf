@@ -24,5 +24,12 @@ output "cluster_version" {
   value       = module.eks.cluster_version
 }
 
+output "eks_cluster_sg_id" {
+  value       = aws_security_group.eks_cluster_sg.id
+  description = "ID of the EKS cluster security group"
+}
 
-
+output "eks_node_sg_id" {
+  value       = aws_security_group.eks_node_sg.id
+  description = "ID of the EKS node group security group"
+}
