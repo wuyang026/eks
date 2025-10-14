@@ -26,9 +26,6 @@ node_sg_ingress_rules = [
 # public endpoint access cidrs
 endpoint_public_access_cidrs = []
 
-# ecr Variables
-ecr_repo_name         = "ecr-test"
-
 # efs csi driver version
 efs_csi_driver_version = "v2.1.12-eksbuild.1"
 

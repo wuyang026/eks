@@ -56,11 +56,6 @@ variable "existing_vpc_id" {
   type        = string
 }
 
-variable "ecr_repo_name" {
-  description = "ECR repo name"
-  type        = string
-}
-
 variable "efs_csi_driver_version" {
   description = "EFS CSI Driver Version"
   type        = string
