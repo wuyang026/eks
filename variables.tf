@@ -26,17 +26,6 @@ variable "cluster_k8s_version" {
   default     = "1.34"
 }
 
-variable "cluster_prefix" {
-  description = "cluster prefix"
-  type        = string
-  default     = "eks"
-}
-
-variable "tag_subnet_key" {
-  description = "subnet tag key"
-  type        = string
-}
-
 variable "tag_subnet_value" {
   description = "subnet tag value"
   type        = string

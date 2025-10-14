@@ -9,7 +9,7 @@ spec:
   # Required: Subnet selection for node placement
   subnetSelectorTerms:
     - tags:
-        ${tag_subnet_key}: "${tag_subnet_value}"
+        karpenter.sh/discovery: "${tag_subnet_value}"
 
   # Required: Security group selection for nodes
   securityGroupSelectorTerms:

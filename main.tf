@@ -65,7 +65,6 @@ resource "kubectl_manifest" "karpenter_node_class" {
     eks_cluster_name     = module.eks.cluster_name
     eks_auto_node_policy = module.eks.node_iam_role_name
     node_class_name      = local.node_class_name
-    tag_subnet_key       = var.tag_subnet_key
     tag_subnet_value     = var.tag_subnet_value
     tag_node_sg_name_value    = aws_security_group.eks_node_sg.tags["Name"]
   })
