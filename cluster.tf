@@ -1,6 +1,9 @@
 module "eks" {
-  source  = "terraform-aws-modules/eks/aws"
-  version = "~> 21.1"
+  #source  = "terraform-aws-modules/eks/aws"
+  #version = "~> 21.1"
+  
+  #sourceローカル化
+  source = "./modules/eks"
 
   kubernetes_version = var.cluster_k8s_version
   name    = local.cluster_name

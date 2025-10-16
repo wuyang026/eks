@@ -27,7 +27,7 @@ node_sg_ingress_rules = [
 endpoint_public_access_cidrs = []
 
 # efs csi driver version
-efs_csi_driver_version = "v2.1.12-eksbuild.1"
+efs_csi_driver_version = "v2.1.13-eksbuild.1"
 
 # node pool Variables
 instance_architecture = ["amd64","arm64"]

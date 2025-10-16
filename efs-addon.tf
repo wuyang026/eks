@@ -12,8 +12,12 @@ resource "time_sleep" "node_create" {
 
 # EFS CSIドライバーインストール
 module "aws_efs_csi_pod_identity" {
-  source  = "terraform-aws-modules/eks-pod-identity/aws"
-  version = "2.0.0"
+  #source  = "terraform-aws-modules/eks-pod-identity/aws"
+  #version = "2.0.0"
+
+  #sourceローカル化
+  source = "./modules/aws_efs_csi_pod_identity/"
+
   name             = "${module.eks.cluster_name}-efs-role"
   additional_policy_arns = {
     AmazonEFSCSIDriverPolicy = "arn:aws:iam::aws:policy/service-role/AmazonEFSCSIDriverPolicy"
