@@ -329,7 +329,7 @@ resource "aws_eks_access_policy_association" "this" {
 ################################################################################
 
 module "kms" {
-  source  = "./modules/eks.kms"
+  source  = "./modules/kms"
   #source  = "terraform-aws-modules/kms/aws"
   #version = "4.0.0" # Note - be mindful of Terraform/provider version compatibility between modules
 
